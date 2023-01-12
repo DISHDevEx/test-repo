@@ -25,9 +25,7 @@ class S3Utilities:
             raise Exception("Please Initialize Class parameters")
 
     def upload_file(self, local_path, bucket_name, key):
-        """
-        upload any file to s3.
-        """
+
         try:
             self.client.upload_file(local_path, bucket_name, key)
         except ClientError as error:
@@ -36,17 +34,13 @@ class S3Utilities:
         return print(f'Uploaded Path: s3://{bucket_name}/{key}')
 
     def download_file(self, local_path, bucket_name, key):
-        """
-        downloads any file to s3.
-        """
+
         with open(local_path, 'wb') as file:
             self.client.download_fileobj(bucket_name, key, file)
         return print(f"Downloaded file to: {local_path}")
 
     def download_zip(self, local_path, folder, type_, file_name):
-        """
-        downloads a zip file from s3.
-        """
+
         print('Try to download from', self.bucket_name,
               f'{self.model_name}/{self.version}/{folder}/{type_}/{file_name}')
         with open(local_path, 'wb') as file:
