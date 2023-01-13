@@ -8,9 +8,9 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /app
 COPY . .
-RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip install venv-pack==0.2.0 && \
-    python3 -m pip install .
+RUN python3 -m pip3 install --upgrade pip && \
+    python3 -m pip3 install venv-pack==0.2.0 && \
+    python3 -m pip3 install .
 
 RUN pip install git+https://github.com/DISHDevEx/msspackages.git
 RUN pip install git+https://github.com/DISHDevEx/eks-ml-pipeline.git
