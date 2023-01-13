@@ -5,13 +5,13 @@ RUN yum install -y python3
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
+RUN pip3 install git+https://github.com/DISHDevEx/msspackages.git
+RUN pip3 install git+https://github.com/DISHDevEx/eks-ml-pipeline.git
 WORKDIR /app
 COPY . .
 RUN pip3 install venv-pack==0.2.0
 RUN pip3 install git
-RUN pip3 install git+https://github.com/DISHDevEx/msspackages.git
-RUN pip3 install git+https://github.com/DISHDevEx/eks-ml-pipeline.git
+
 RUN  pip3 install boto3
 RUN  pip3 install pyarrow
 RUN  pip3 install awswrangler
