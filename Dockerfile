@@ -10,8 +10,6 @@ RUN pip3 install git+https://github.com/DISHDevEx/eks-ml-pipeline.git
 WORKDIR /app
 COPY . .
 RUN pip3 install venv-pack==0.2.0
-RUN pip3 install git
-
 RUN  pip3 install boto3
 RUN  pip3 install pyarrow
 RUN  pip3 install awswrangler
