@@ -26,8 +26,11 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
       # Upload a file to AWS s3
-      - name:  run docker and upload .gz file to s3
+      - name:  run docker build
         run: |
           DOCKER_BUILDKIT=1 docker build --output . .
-          aws s3 cp s3://${{ env.BUCKET_NAME }}/ pyspark_deps_latest.tar.gz
+          ls
+      - name: upload to s3
+        run: |
+          aws s3 cp s3://${{ env.BUCKET_NAME }}/ ../pyspark_deps_latest.tar.gz
 #          aws s3 cp s3://dish-5g.core.pd.g.dp.eks.logs.e/emr_serverless/code/entry_point/s3_test_emr.py .
