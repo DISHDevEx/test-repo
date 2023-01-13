@@ -9,13 +9,13 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 WORKDIR /app
 COPY . .
 RUN pip3 install venv-pack==0.2.0
-RUN pip install git+https://github.com/DISHDevEx/msspackages.git
-RUN pip install git+https://github.com/DISHDevEx/eks-ml-pipeline.git
-RUN  pip install boto3
-RUN  pip install pyarrow
-RUN  pip install awswrangler
-RUN  pip install fast-arrow
-RUN  pip install tf2onnx
+RUN pip3 install git+https://github.com/DISHDevEx/msspackages.git
+RUN pip3 install git+https://github.com/DISHDevEx/eks-ml-pipeline.git
+RUN  pip3 install boto3
+RUN  pip3 install pyarrow
+RUN  pip3 install awswrangler
+RUN  pip3 install fast-arrow
+RUN  pip3 install tf2onnx
 RUN pwd
 
 RUN mkdir /output && venv-pack -o /output/pyspark_deps_latest.tar.gz
