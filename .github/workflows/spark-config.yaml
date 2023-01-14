@@ -32,5 +32,5 @@ jobs:
           ls
       - name: upload to s3
         run: |
-          aws s3 cp s3://${{ env.BUCKET_NAME }}/ ../pyspark_deps_latest.tar.gz
+          aws s3 cp s3a://${{ env.BUCKET_NAME }}/test/ pyspark_deps_latest.tar.gz
 #          aws s3 cp s3://dish-5g.core.pd.g.dp.eks.logs.e/emr_serverless/code/entry_point/s3_test_emr.py .
