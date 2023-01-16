@@ -12,8 +12,7 @@ permissions:
       contents: read    # This is required for actions/checkout
 jobs:
   S3PackageUpload:
-    if_merged:
-      if: github.event.pull_request.merged == true
+s
       runs-on: ubuntu-latest
       strategy:
         matrix:
