@@ -1,4 +1,4 @@
-name: Pylint
+name: Pylint-pr-check
 on:
   pull_request:
     branches: [main]
@@ -20,4 +20,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint --8 $(git ls-files '*.py')
+        pylint --8 $(git ls-files '*.py')s

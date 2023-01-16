@@ -1,4 +1,4 @@
-name: AWS example workflow
+name: spark-config
 on:
   push
 env:

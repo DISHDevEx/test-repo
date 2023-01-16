@@ -1,4 +1,4 @@
-name: AWS example workflow
+name: pytest-pr-check
 on:
   push
 env:
@@ -9,19 +9,33 @@ permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
 jobs:
-  S3PackageUpload:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.9" ]
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
+      - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+       with:
+          python-version: ${{ matrix.python-version }}
         with:
           role-to-assume: arn:aws:iam::064047601590:role/GitHub_Action_Role
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
       # Upload a file to AWS s3
-      - name:  Copy utils.py to s3
+      - name: Install dependencies
         run: |
-          aws s3 cp s3://${{ env.BUCKET_NAME }}/ ./index.html
-          aws s3 cp s3://dish-5g.core.pd.g.dp.eks.logs.e/emr_serverless/code/entry_point/s3_test_emr.py .
+          python -m pip install --upgrade pip
+          pip install  pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        - name: Test with pytest
+          run: |
+            pytest 
+          
+          
+          
