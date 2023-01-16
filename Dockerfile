@@ -17,7 +17,7 @@ RUN  pip3 install fast-arrow
 RUN  pip3 install tf2onnx
 RUN pwd
 
-RUN mkdir /output && venv-pack -o /output/pyspark_deps_latest.tar.gz
+RUN mkdir /output && venv-pack -o /output/pyspark_deps_github.tar.gz
 
 FROM scratch AS export
-COPY --from=base /output/pyspark_deps_latest.tar.gz /
+COPY --from=base /output/pyspark_deps_github.tar.gz /
