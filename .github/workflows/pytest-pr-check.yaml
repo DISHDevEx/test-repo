@@ -20,10 +20,9 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
       - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-       with:
-          python-version: ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
+          python-version: ${{ matrix.python-version }}
           role-to-assume: arn:aws:iam::064047601590:role/GitHub_Action_Role
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
